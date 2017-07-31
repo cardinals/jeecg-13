@@ -51,7 +51,7 @@
           <div class="center">
             <h1 id="id-text2" class="grey">
               <i class="ace-icon fa fa-leaf green"></i>
-                  演示系统
+                  投票管理系统
             </h1>
      
           </div>
@@ -72,13 +72,13 @@
                   <div class="space-6"></div>
                       <label class="block clearfix">
 								<span class="block input-icon input-icon-right">
-									<input type="text"  name="userName" class="form-control" placeholder="请输入用户名"  id="userName" value="admin"/>
+									<input type="text"  name="userName" class="form-control" placeholder="请输入用户名"  id="userName" value=""/>
 									<i class="ace-icon fa fa-user"></i>
 								</span>
                       </label>
                       <label class="block clearfix">
 								<span class="block input-icon input-icon-right">
-									<input type="password" name="password" class="form-control" placeholder="请输入密码" id="password" value="123456"/>
+									<input type="password" name="password" class="form-control" placeholder="请输入密码" id="password" value=""/>
 									<i class="ace-icon fa fa-lock"></i>
 								</span>
                       </label>
@@ -114,7 +114,7 @@
                 </form>
               </div>
             </div>
-            <div class="center"><h4 class="blue" id="id-company-text">&copy;版权所有 v_3.7</h4></div>
+            <div class="center"><h4 class="blue" id="id-company-text">&copy;DEVOS版权所有 v_3.7</h4></div>
             <div class="navbar-fixed-top align-right">
               <br />
               &nbsp;

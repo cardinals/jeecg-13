@@ -1,24 +1,18 @@
 package com.jeecg.entity.voteset;
 
-import java.math.BigDecimal;
-import java.util.Date;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
 import org.hibernate.annotations.DynamicInsert;
 import org.hibernate.annotations.DynamicUpdate;
 import org.hibernate.annotations.GenericGenerator;
-import javax.persistence.SequenceGenerator;
 
 /**   
  * @Title: Entity
  * @Description: 投票设置
- * @author zhangdaihao
+ * @author cfma
  * @date 2017-07-19 16:18:44
  * @version V1.0   
  *
@@ -41,6 +35,20 @@ public class VoteSetEntity implements java.io.Serializable {
 	private java.lang.String password;
 	/**enable*/
 	private java.lang.String enable;
+	/**description*/
+	private java.lang.String description;
+	/**createDate*/
+	private java.util.Date createDate;
+	/**createBy*/
+	private java.lang.String createBy;
+	/**createName*/
+	private java.lang.String createName;
+	/**updateDate*/
+	private java.util.Date updateDate;
+	/**updateBy*/
+	private java.lang.String updateBy;
+	/**updateName*/
+	private java.lang.String updateName;
 	
 	/**
 	 *方法: 取得java.lang.String
@@ -142,4 +150,69 @@ public class VoteSetEntity implements java.io.Serializable {
 	public void setEnable(java.lang.String enable){
 		this.enable = enable;
 	}
+	
+	
+	@Column(name ="DESCRIPTION",nullable=true,length=200)
+	public java.lang.String getDescription() {
+		return description;
+	}
+
+	public void setDescription(java.lang.String description) {
+		this.description = description;
+	}
+
+	@Column(name ="CREATEDATE",nullable=true,length=0)
+	public java.util.Date getCreateDate() {
+		return createDate;
+	}
+
+	public void setCreateDate(java.util.Date createDate) {
+		this.createDate = createDate;
+	}
+	
+	@Column(name ="CREATEBY",nullable=true,length=40)
+	public java.lang.String getCreateBy() {
+		return createBy;
+	}
+
+	public void setCreateBy(java.lang.String createBy) {
+		this.createBy = createBy;
+	}
+	
+	@Column(name ="CREATENAME",nullable=true,length=40)
+	public java.lang.String getCreateName() {
+		return createName;
+	}
+
+	public void setCreateName(java.lang.String createName) {
+		this.createName = createName;
+	}
+	
+	@Column(name ="UPDATEDATE",nullable=true,length=0)
+	public java.util.Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(java.util.Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
+	@Column(name ="UPDATEBY",nullable=true,length=40)
+	public java.lang.String getUpdateBy() {
+		return updateBy;
+	}
+
+	public void setUpdateBy(java.lang.String updateBy) {
+		this.updateBy = updateBy;
+	}
+
+	@Column(name ="UPDATENAME",nullable=true,length=40)
+	public java.lang.String getUpdateName() {
+		return updateName;
+	}
+
+	public void setUpdateName(java.lang.String updateName) {
+		this.updateName = updateName;
+	}
+
 }

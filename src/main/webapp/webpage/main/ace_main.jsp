@@ -59,7 +59,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							JEECG 微云快速开发平台
+							DEVOS 投票管理系统
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->
@@ -237,12 +237,12 @@
 									</a>
 								</li>
 								
-								<li>
+							<!-- 	<li>
 									<a href="http://yun.jeecg.org" target="_blank">
 										<i class="icon-cloud"></i>
 										 云应用中心
 									</a>
-								</li>
+								</li> -->
 								
 								<li>
 									<a href="javascript:clearLocalstorage()">
