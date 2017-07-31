@@ -10,7 +10,7 @@
     <!--360浏览器优先以webkit内核解析-->
 
 
-    <title>投票管理系统</title>
+    <title>任务管理系统</title>
 
     <link rel="shortcut icon" href="images/favicon.ico">
     <link href="plug-in-ui/hplus/css/bootstrap.min.css?v=3.3.6" rel="stylesheet">

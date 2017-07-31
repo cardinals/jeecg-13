@@ -59,7 +59,7 @@
 					<a href="#" class="navbar-brand">
 						<small>
 							<i class="icon-leaf"></i>
-							DEVOS 投票管理系统
+							DEVOS 任务管理系统
 						</small>
 					</a><!-- /.brand -->
 				</div><!-- /.navbar-header -->

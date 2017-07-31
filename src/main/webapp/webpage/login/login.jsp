@@ -51,7 +51,7 @@
           <div class="center">
             <h1 id="id-text2" class="grey">
               <i class="ace-icon fa fa-leaf green"></i>
-                  投票管理系统
+                  任务管理系统
             </h1>
      
           </div>

@@ -1,4 +1,4 @@
-package com.jeecg.controller.voteset;
+package com.jeecg.controller.votelog;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -22,8 +22,8 @@ import org.jeecgframework.web.system.pojo.base.TSDepart;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.core.util.MyBeanUtils;
 
-import com.jeecg.entity.voteset.VoteSetEntity;
-import com.jeecg.service.voteset.VoteSetServiceI;
+import com.jeecg.entity.votelog.VotelogEntity;
+import com.jeecg.service.votelog.VotelogServiceI;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -45,22 +45,22 @@ import org.springframework.web.util.UriComponentsBuilder;
 
 /**   
  * @Title: Controller
- * @Description: 投票设置
- * @author cfma
- * @date 2017-07-19 16:18:44
+ * @Description: 投票日志
+ * @author zhangdaihao
+ * @date 2017-07-29 02:23:23
  * @version V1.0   
  *
  */
 @Controller
-@RequestMapping("/voteSetController")
-public class VoteSetController extends BaseController {
+@RequestMapping("/votelogController")
+public class VotelogController extends BaseController {
 	/**
 	 * Logger for this class
 	 */
-	private static final Logger logger = Logger.getLogger(VoteSetController.class);
+	private static final Logger logger = Logger.getLogger(VotelogController.class);
 
 	@Autowired
-	private VoteSetServiceI voteSetService;
+	private VotelogServiceI votelogService;
 	@Autowired
 	private SystemService systemService;
 	@Autowired
@@ -69,13 +69,13 @@ public class VoteSetController extends BaseController {
 
 
 	/**
-	 * 投票设置列表 页面跳转
+	 * 投票日志列表 页面跳转
 	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
-		return new ModelAndView("com/jeecg/vote/voteset/voteSetList");
+		return new ModelAndView("com/jeecg/votelog/votelogList");
 	}
 
 	/**
@@ -88,27 +88,27 @@ public class VoteSetController extends BaseController {
 	 */
 
 	@RequestMapping(params = "datagrid")
-	public void datagrid(VoteSetEntity voteSet,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
-		CriteriaQuery cq = new CriteriaQuery(VoteSetEntity.class, dataGrid);
+	public void datagrid(VotelogEntity votelog,HttpServletRequest request, HttpServletResponse response, DataGrid dataGrid) {
+		CriteriaQuery cq = new CriteriaQuery(VotelogEntity.class, dataGrid);
 		//查询条件组装器
-		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, voteSet, request.getParameterMap());
-		this.voteSetService.getDataGridReturn(cq, true);
+		org.jeecgframework.core.extend.hqlsearch.HqlGenerateUtil.installHql(cq, votelog, request.getParameterMap());
+		this.votelogService.getDataGridReturn(cq, true);
 		TagUtil.datagrid(response, dataGrid);
 	}
 
 	/**
-	 * 删除投票设置
+	 * 删除投票日志
 	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "del")
 	@ResponseBody
-	public AjaxJson del(VoteSetEntity voteSet, HttpServletRequest request) {
+	public AjaxJson del(VotelogEntity votelog, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		voteSet = systemService.getEntity(VoteSetEntity.class, voteSet.getId());
-		message = "投票设置删除成功";
-		voteSetService.delete(voteSet);
+		votelog = systemService.getEntity(VotelogEntity.class, votelog.getId());
+		message = "投票日志删除成功";
+		votelogService.delete(votelog);
 		systemService.addLog(message, Globals.Log_Type_DEL, Globals.Log_Leavel_INFO);
 		
 		j.setMsg(message);
@@ -117,30 +117,30 @@ public class VoteSetController extends BaseController {
 
 
 	/**
-	 * 添加投票设置
+	 * 添加投票日志
 	 * 
 	 * @param ids
 	 * @return
 	 */
 	@RequestMapping(params = "save")
 	@ResponseBody
-	public AjaxJson save(VoteSetEntity voteSet, HttpServletRequest request) {
+	public AjaxJson save(VotelogEntity votelog, HttpServletRequest request) {
 		String message = null;
 		AjaxJson j = new AjaxJson();
-		if (StringUtil.isNotEmpty(voteSet.getId())) {
-			message = "投票设置更新成功";
-			VoteSetEntity t = voteSetService.get(VoteSetEntity.class, voteSet.getId());
+		if (StringUtil.isNotEmpty(votelog.getId())) {
+			message = "投票日志更新成功";
+			VotelogEntity t = votelogService.get(VotelogEntity.class, votelog.getId());
 			try {
-				MyBeanUtils.copyBeanNotNull2Bean(voteSet, t);
-				voteSetService.saveOrUpdate(t);
+				MyBeanUtils.copyBeanNotNull2Bean(votelog, t);
+				votelogService.saveOrUpdate(t);
 				systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
 			} catch (Exception e) {
 				e.printStackTrace();
-				message = "投票设置更新失败";
+				message = "投票日志更新失败";
 			}
 		} else {
-			message = "投票设置添加成功";
-			voteSetService.save(voteSet);
+			message = "投票日志添加成功";
+			votelogService.save(votelog);
 			systemService.addLog(message, Globals.Log_Type_INSERT, Globals.Log_Leavel_INFO);
 		}
 		j.setMsg(message);
@@ -148,30 +148,30 @@ public class VoteSetController extends BaseController {
 	}
 
 	/**
-	 * 投票设置列表页面跳转
+	 * 投票日志列表页面跳转
 	 * 
 	 * @return
 	 */
 	@RequestMapping(params = "addorupdate")
-	public ModelAndView addorupdate(VoteSetEntity voteSet, HttpServletRequest req) {
-		if (StringUtil.isNotEmpty(voteSet.getId())) {
-			voteSet = voteSetService.getEntity(VoteSetEntity.class, voteSet.getId());
-			req.setAttribute("voteSetPage", voteSet);
+	public ModelAndView addorupdate(VotelogEntity votelog, HttpServletRequest req) {
+		if (StringUtil.isNotEmpty(votelog.getId())) {
+			votelog = votelogService.getEntity(VotelogEntity.class, votelog.getId());
+			req.setAttribute("votelogPage", votelog);
 		}
-		return new ModelAndView("com/jeecg/vote/voteset/voteSet");
+		return new ModelAndView("com/jeecg/votelog/votelog");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public List<VoteSetEntity> list() {
-		List<VoteSetEntity> listVoteSets=voteSetService.getList(VoteSetEntity.class);
-		return listVoteSets;
+	public List<VotelogEntity> list() {
+		List<VotelogEntity> listVotelogs=votelogService.getList(VotelogEntity.class);
+		return listVotelogs;
 	}
 	
 	@RequestMapping(value = "/{id}", method = RequestMethod.GET)
 	@ResponseBody
 	public ResponseEntity<?> get(@PathVariable("id") String id) {
-		VoteSetEntity task = voteSetService.get(VoteSetEntity.class, id);
+		VotelogEntity task = votelogService.get(VotelogEntity.class, id);
 		if (task == null) {
 			return new ResponseEntity(HttpStatus.NOT_FOUND);
 		}
@@ -180,19 +180,19 @@ public class VoteSetController extends BaseController {
 
 	@RequestMapping(method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseBody
-	public ResponseEntity<?> create(@RequestBody VoteSetEntity voteSet, UriComponentsBuilder uriBuilder) {
+	public ResponseEntity<?> create(@RequestBody VotelogEntity votelog, UriComponentsBuilder uriBuilder) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<VoteSetEntity>> failures = validator.validate(voteSet);
+		Set<ConstraintViolation<VotelogEntity>> failures = validator.validate(votelog);
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
 		//保存
-		voteSetService.save(voteSet);
+		votelogService.save(votelog);
 
 		//按照Restful风格约定，创建指向新任务的url, 也可以直接返回id或对象.
-		String id = voteSet.getId();
-		URI uri = uriBuilder.path("/rest/voteSetController/" + id).build().toUri();
+		String id = votelog.getId();
+		URI uri = uriBuilder.path("/rest/votelogController/" + id).build().toUri();
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(uri);
 
@@ -200,15 +200,15 @@ public class VoteSetController extends BaseController {
 	}
 
 	@RequestMapping(value = "/{id}", method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> update(@RequestBody VoteSetEntity voteSet) {
+	public ResponseEntity<?> update(@RequestBody VotelogEntity votelog) {
 		//调用JSR303 Bean Validator进行校验，如果出错返回含400错误码及json格式的错误信息.
-		Set<ConstraintViolation<VoteSetEntity>> failures = validator.validate(voteSet);
+		Set<ConstraintViolation<VotelogEntity>> failures = validator.validate(votelog);
 		if (!failures.isEmpty()) {
 			return new ResponseEntity(BeanValidators.extractPropertyAndMessage(failures), HttpStatus.BAD_REQUEST);
 		}
 
 		//保存
-		voteSetService.saveOrUpdate(voteSet);
+		votelogService.saveOrUpdate(votelog);
 
 		//按Restful约定，返回204状态码, 无内容. 也可以返回200状态码.
 		return new ResponseEntity(HttpStatus.NO_CONTENT);
@@ -217,6 +217,6 @@ public class VoteSetController extends BaseController {
 	@RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
 	@ResponseStatus(HttpStatus.NO_CONTENT)
 	public void delete(@PathVariable("id") String id) {
-		voteSetService.deleteEntityById(VoteSetEntity.class, id);
+		votelogService.deleteEntityById(VotelogEntity.class, id);
 	}
 }
