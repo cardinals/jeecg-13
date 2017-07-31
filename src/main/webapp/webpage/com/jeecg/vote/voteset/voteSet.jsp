@@ -18,18 +18,17 @@
 		<fieldset class="step">
 			<div class="form">
 		      <label class="Validform_label">主机地址:</label>
-		      <input class="inputxt" id="address" name="address" ignore="ignore"  datatype="*"  value="${voteSetPage.address}" />
+		      <input class="inputxt" id="address" name="address"   datatype="*"   value="${voteSetPage.address}" />
 		      <span class="Validform_checktip"></span>
-		      <label class="Validform_label" style="display: none;">主机地址</label>
 		    </div>
 		    <div class="form">
 		      <label class="Validform_label">描述:</label>
-		      <input class="inputxt" id="description" name="description" ignore="ignore" datatype="*"  value="${voteSetPage.description}" />
+		      <input class="inputxt" id="description" name="description" ignore="ignore" value="${voteSetPage.description}" />
 		      <span class="Validform_checktip"></span>
 		    </div>
 			<div class="form">
 		      <label class="Validform_label">客户端标识:</label>
-		      <input class="inputxt" id="clientsign" name="clientsign" ignore="ignore" datatype="*"  value="${voteSetPage.clientsign}" />
+		      <input class="inputxt" id="clientsign" name="clientsign"  datatype="*"  value="${voteSetPage.clientsign}" />
 		      <span class="Validform_checktip"></span>
 		    </div>
 			<div class="form">
