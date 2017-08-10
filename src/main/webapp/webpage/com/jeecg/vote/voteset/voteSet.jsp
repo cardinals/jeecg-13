@@ -41,6 +41,11 @@
 		      <input class="inputxt" id="password" name="password" ignore="ignore" datatype="*"  value="${voteSetPage.password}" />
 		      <span class="Validform_checktip"></span>
 		    </div>
+		    <div class="form">
+		      <label class="Validform_label">单价:</label>
+		      <input class="inputxt" id="price" name="price" ignore="ignore" datatype="*"  value="${voteSetPage.price}" />
+		      <span class="Validform_checktip"></span>
+		    </div>
 			<div class="form">
 		       <label class="Validform_label">是否启用:</label>
 		       <t:dictSelect field="enable" type="radio" 

@@ -49,6 +49,8 @@ public class VoteSetEntity implements java.io.Serializable {
 	private java.lang.String updateBy;
 	/**updateName*/
 	private java.lang.String updateName;
+	/**price*/
+	private java.lang.Float price;
 	
 	/**
 	 *方法: 取得java.lang.String
@@ -214,5 +216,13 @@ public class VoteSetEntity implements java.io.Serializable {
 	public void setUpdateName(java.lang.String updateName) {
 		this.updateName = updateName;
 	}
+	
+	@Column(name ="PRICE",nullable=true,length=40)
+	public java.lang.Float getPrice() {
+		return price;
+	}
 
+	public void setPrice(java.lang.Float price) {
+		this.price = price;
+	}
 }

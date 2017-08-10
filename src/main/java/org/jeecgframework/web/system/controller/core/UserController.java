@@ -626,7 +626,85 @@ public class UserController extends BaseController {
 
 		return j;
 	}
+	/**
+	 * 用户录入
+	 * 
+	 * @param user
+	 * @param req
+	 * @return
+	 */
 
+	@RequestMapping(params = "saveUserSingle")
+	@ResponseBody
+	public AjaxJson saveUserSingle(HttpServletRequest req, TSUser user) {
+		String message = null;
+		AjaxJson j = new AjaxJson();
+		// 得到用户的角色
+		TSUser users = systemService.getEntity(TSUser.class, user.getId());
+		String mobilePhone = (String)req.getAttribute("mobilePhone"); 
+		String officePhone = (String)req.getAttribute("officePhone"); 
+		String email = (String)req.getAttribute("email"); 
+		users.setEmail(email);
+		users.setOfficePhone(officePhone);
+		users.setMobilePhone(mobilePhone);
+		users.setStatus(Globals.User_Normal);
+		users.setActivitiSync(user.getActivitiSync());
+		systemService.updateEntitie(users);
+		List<TSRoleUser> ru = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
+		systemService.deleteAllEntitie(ru);
+		message = "用户: " + users.getUserName() + "更新成功";
+		systemService.addLog(message, Globals.Log_Type_UPDATE, Globals.Log_Leavel_INFO);
+		j.setMsg(message);
+
+		return j;
+	}
+	/**
+	 * 用户录入
+	 * 
+	 * @param user
+	 * @param req
+	 * @return
+	 */
+
+	@RequestMapping(params = "saveUserForSy")
+	public ModelAndView saveUserForSy(HttpServletRequest req, TSUser user) {
+		// 得到用户的角色
+		TSUser users = systemService.getEntity(TSUser.class, user.getId());
+		String mobilePhone = (String)req.getAttribute("mobilePhone"); 
+		String officePhone = (String)req.getAttribute("officePhone"); 
+		String email = (String)req.getAttribute("email"); 
+		users.setEmail(email);
+		users.setOfficePhone(officePhone);
+		users.setMobilePhone(mobilePhone);
+		users.setStatus(Globals.User_Normal);
+		users.setActivitiSync(user.getActivitiSync());
+		systemService.updateEntitie(users);
+		TSUser tsuser = ResourceUtil.getSessionUserName();
+		req.setAttribute("user", tsuser);
+		List<TSUserOrg> tSUserOrgs = systemService.findByProperty(TSUserOrg.class, "tsUser.id", user.getId());
+		String orgIds = "";
+		String departname = "";
+		if (tSUserOrgs.size() > 0) {
+			for (TSUserOrg tSUserOrg : tSUserOrgs) {
+				orgIds += tSUserOrg.getTsDepart().getId() + ",";
+				departname += tSUserOrg.getTsDepart().getDepartname() + ",";
+			}
+		}
+		req.setAttribute("orgIds", orgIds);
+		req.setAttribute("departname", departname);
+		List<TSRoleUser> roleUsers = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
+		String roleId = "";
+		String roleName = "";
+		if (roleUsers.size() > 0) {
+			for (TSRoleUser tRoleUser : roleUsers) {
+				roleId += tRoleUser.getTSRole().getId() + ",";
+				roleName += tRoleUser.getTSRole().getRoleName() + ",";
+			}
+		}
+		req.setAttribute("id", roleId);
+		req.setAttribute("roleName", roleName);
+		return new ModelAndView("main/hplushome");
+	}
     /**
      * 保存 用户-组织机构 关系信息
      * @param request request

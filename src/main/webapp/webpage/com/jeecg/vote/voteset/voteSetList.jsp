@@ -10,6 +10,7 @@
    <t:dgCol title="客户端标志" field="clientsign"   width="120"></t:dgCol>
    <t:dgCol title="账号" field="account"   width="120"></t:dgCol>
    <t:dgCol title="密码" field="password"   width="120"></t:dgCol>
+   <t:dgCol title="单价" field="price"   width="120"></t:dgCol>
    <t:dgCol title="创建人" field="createName"   width="120"></t:dgCol>
    <t:dgCol title="创建时间" field="createDate"   width="120"></t:dgCol>
    <t:dgCol title="创建人ID" field="createBy"   width="120"></t:dgCol>

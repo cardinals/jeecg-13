@@ -75,7 +75,7 @@ public class VotelogController extends BaseController {
 	 */
 	@RequestMapping(params = "list")
 	public ModelAndView list(HttpServletRequest request) {
-		return new ModelAndView("com/jeecg/votelog/votelogList");
+		return new ModelAndView("com/jeecg/vote/votelog/votelogList");
 	}
 
 	/**
@@ -158,7 +158,7 @@ public class VotelogController extends BaseController {
 			votelog = votelogService.getEntity(VotelogEntity.class, votelog.getId());
 			req.setAttribute("votelogPage", votelog);
 		}
-		return new ModelAndView("com/jeecg/votelog/votelog");
+		return new ModelAndView("com/jeecg/vote/votelog/votelog");
 	}
 	
 	@RequestMapping(method = RequestMethod.GET)

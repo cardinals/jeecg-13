@@ -138,6 +138,13 @@
             </td>
 		</tr>
 		<tr>
+			<td align="right" nowrap><label class="Validform_label">  <t:mutiLang langKey="common.userlevel"/>: </label></td>
+            <td class="value"><t:dictSelect field="levelid" defaultVal="${user.levelid}" datatype="*" dictTable="t_vote_levset" dictField="levelcode" dictText="levelname" title="用户等级"></t:dictSelect> 
+			<span class="Validform_checktip"></span>
+			</td>
+		</tr>
+		
+		<tr>
 			<td align="right" nowrap><label class="Validform_label">  <t:mutiLang langKey="common.phone"/>: </label></td>
 			<td class="value">
                 <input class="inputxt" name="mobilePhone" value="${user.mobilePhone}" datatype="m" errormsg="手机号码不正确" ignore="ignore">

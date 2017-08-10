@@ -35,6 +35,7 @@ import org.jeecgframework.web.system.pojo.base.TSRole;
 import org.jeecgframework.web.system.pojo.base.TSRoleFunction;
 import org.jeecgframework.web.system.pojo.base.TSRoleUser;
 import org.jeecgframework.web.system.pojo.base.TSUser;
+import org.jeecgframework.web.system.pojo.base.TSUserOrg;
 import org.jeecgframework.web.system.service.MutiLangServiceI;
 import org.jeecgframework.web.system.service.SystemService;
 import org.jeecgframework.web.system.service.UserService;
@@ -458,7 +459,30 @@ public class LoginController extends BaseController{
 		} else {//default及shortcut不需要引入依赖文件，所有需要屏蔽
 			request.setAttribute("show", "0");
 		}*/
-
+		TSUser user = ResourceUtil.getSessionUserName();
+		request.setAttribute("user", user);
+		List<TSUserOrg> tSUserOrgs = systemService.findByProperty(TSUserOrg.class, "tsUser.id", user.getId());
+		String orgIds = "";
+		String departname = "";
+		if (tSUserOrgs.size() > 0) {
+			for (TSUserOrg tSUserOrg : tSUserOrgs) {
+				orgIds += tSUserOrg.getTsDepart().getId() + ",";
+				departname += tSUserOrg.getTsDepart().getDepartname() + ",";
+			}
+		}
+		request.setAttribute("orgIds", orgIds);
+		request.setAttribute("departname", departname);
+		List<TSRoleUser> roleUsers = systemService.findByProperty(TSRoleUser.class, "TSUser.id", user.getId());
+		String roleId = "";
+		String roleName = "";
+		if (roleUsers.size() > 0) {
+			for (TSRoleUser tRoleUser : roleUsers) {
+				roleId += tRoleUser.getTSRole().getId() + ",";
+				roleName += tRoleUser.getTSRole().getRoleName() + ",";
+			}
+		}
+		request.setAttribute("id", roleId);
+		request.setAttribute("roleName", roleName);
 		return new ModelAndView("main/hplushome");
 	}
 	/**

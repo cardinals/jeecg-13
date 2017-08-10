@@ -38,6 +38,9 @@ public class TSUser extends TSBaseUser implements java.io.Serializable {
 	private java.lang.String updateBy;
 	/**修改人名称*/
 	private java.lang.String updateName;
+	/**用户等级ID*/
+	private java.lang.String levelid;
+	
 	@Column(name = "signatureFile", length = 100)
 	public String getSignatureFile() {
 		return this.signatureFile;
@@ -168,5 +171,21 @@ public class TSUser extends TSBaseUser implements java.io.Serializable {
 	 */
 	public void setUpdateName(java.lang.String updateName){
 		this.updateName = updateName;
+	}
+	/**
+	 *方法: 取得java.lang.String
+	 *@return: java.lang.String  修改人名称
+	 */
+	@Column(name ="levelid",nullable=true,length=40)
+	public java.lang.String getLevelid(){
+		return this.levelid;
+	}
+
+	/**
+	 *方法: 设置java.lang.String
+	 *@param: java.lang.String  修改人名称
+	 */
+	public void setLevelid(java.lang.String levelid){
+		this.levelid = levelid;
 	}
 }

@@ -206,10 +206,10 @@
 					<div style="background: url(plug-in/login/images/exit.png) no-repeat left center;padding-left:30px;"
                          onclick="openwindow('系统信息','tSSmsController.do?getSysInfos')">系统信息</div>
 				</li>
-				<li cmd="favorite">
+				<!-- <li cmd="favorite">
 					<div style="background: url(plug-in/login/images/exit.png) no-repeat left center;padding-left:30px;"
                          onclick="add('修改首页风格','userController.do?changestyle',null,560,200)">首页风格 </div>
-				</li>
+				</li> -->
 				<!-- <li cmd="favorite">
 					<div style="background: url(plug-in/login/images/exit.png) no-repeat left center;padding-left:30px;"
                          onclick="window.open('http://yun.jeecg.org')">云应用中心 </div>
