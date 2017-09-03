@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.commons.lang.StringUtils;
 import org.apache.log4j.Logger;
 import org.jeecgframework.core.common.controller.BaseController;
+import org.jeecgframework.core.common.dao.jdbc.JdbcDao;
 import org.jeecgframework.core.common.model.json.AjaxJson;
 import org.jeecgframework.core.constant.Globals;
 import org.jeecgframework.core.enums.SysThemesEnum;
@@ -59,7 +60,8 @@ public class LoginController extends BaseController{
 	private Logger log = Logger.getLogger(LoginController.class);
 	private SystemService systemService;
 	private UserService userService;
-
+	@Autowired
+	protected JdbcDao jdbcdao;
 	@Autowired
 	private MutiLangServiceI mutiLangService;
 	
@@ -483,6 +485,13 @@ public class LoginController extends BaseController{
 		}
 		request.setAttribute("id", roleId);
 		request.setAttribute("roleName", roleName);
+		String sqls = "select balance from t_user_balance where userid='"+user.getUserName()+"'";
+		Map<String, Object> usrmap = jdbcdao.findOneForJdbc(sqls,null);
+		float money = 0;
+		if(usrmap.size()>0){
+			money = (float) usrmap.get("balance");
+		}
+		request.setAttribute("money", money);
 		return new ModelAndView("main/hplushome");
 	}
 	/**

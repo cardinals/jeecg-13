@@ -176,12 +176,7 @@ public class VoteTaskController extends BaseController{
 		 String jsonstr = null;
          String voteaddress =null;
          String appkey =null;
-         String code=null;
          String taskId = req.getParameter("taskid");
-         String startNum=null;
-		 String endNum=null;
-		 String status = null;
-		 String taskNum=null;
  		 try {
  			 if(voteTaskService.getAddress().size()>0){
  				 voteaddress= voteTaskService.getAddress().get(0).get("address").toString();
@@ -189,15 +184,6 @@ public class VoteTaskController extends BaseController{
  			 }
  			String voteurl =voteaddress+"?methods=freshTaskInfo&appkey="+appkey+"&taskId="+taskId+"&productType=48";
  		    jsonstr= voteTaskService.getJSON(voteurl);
- 		   JSONObject first = JSONObject.fromObject(jsonstr);
-		   code = first.getString("code");
-		   if("0".equals(code)){
-			  JSONObject contentJson =   JSONObject.fromObject( first.getString("content"));;
-			  startNum = contentJson.getString("startNum");
-			  endNum = contentJson.getString("currentNum");
-			  taskNum = contentJson.getString("taskNum");
-		   }
-		   voteTaskService.recordLog(voteaddress, taskNum, taskId, startNum, endNum, jsonstr,"Query",status);
 		 } catch (Exception e) {
 			// TODO Auto-generated catch block
 			 e.printStackTrace();

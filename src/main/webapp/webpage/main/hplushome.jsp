@@ -19,14 +19,16 @@
      </tr>
 		<tr>
 			<td align="right" width="25%" nowrap>
-                <label class="Validform_label">  <t:mutiLang langKey="common.username"/>:  </label>
+                <label  class="Validform_label">  <t:mutiLang langKey="common.username"/>:  </label>
             </td>
 			<td class="value" width="85%">
                 ${user.userName }
             </td>
 		</tr>
 		<tr>
-			<td align="right" width="10%" nowrap><label class="Validform_label"> <t:mutiLang langKey="common.real.name"/>: </label></td>
+			<td align="right" width="10%" nowrap>
+			     <label class="Validform_label"> <t:mutiLang langKey="common.real.name"/>: </label>
+			</td>
 			<td class="value" width="85%">
                 ${user.realName }
             </td>
@@ -81,6 +83,14 @@
 		</tr>
 	</table>
 </t:formvalid>
+	<table>
+	    <tr>
+	    <span class="panel-title" style="font-size: 20px">当前余额:￥${money}</span>
+	    </tr>
+		<tr align="center">
+		<td style="text-align:center" colspan="2"><input class="btn" type="submit"   value="充值" style="height:30px;width:100px !important;border-radius:5px"></td>
+		</tr>
+	</table>
 <script type="text/javascript">
 function save(){
 	  

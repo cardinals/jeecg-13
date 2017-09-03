@@ -2,8 +2,6 @@ package test;
 
 import org.jeecgframework.codegenerate.window.CodeWindow;
 
-import java.sql.SQLOutput;
-
 
 /**
  * 【单表模型】代码生成器入口

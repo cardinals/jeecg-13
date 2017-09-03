@@ -20,7 +20,8 @@
 	<!-- ApplicationContext -->
 	<bean class="org.jeecgframework.core.util.ApplicationContextUtil"></bean>
 	<bean class="org.jeecgframework.p3.core.utils.common.ApplicationContextUtil"></bean>
-
+    <bean id="SpringApplicationContext" class="com.huaxin.framework.core.util.ApplicationContextHelper"></bean>  
+    
 	<!-- 避免IE执行AJAX时,返回JSON出现下载文件 -->
 	<bean id="mappingJacksonHttpMessageConverter"
 		class="org.springframework.http.converter.json.MappingJacksonHttpMessageConverter">
@@ -81,6 +82,9 @@
 	<!-- 异常处理类 -->
 	<bean id="exceptionHandler"
 		class="org.jeecgframework.core.common.exception.GlobalExceptionResolver" />
+	<!-- 自定义外部访问DB -->	
+	<bean id="SpringApplicationContext" 
+	     class="com.getmsg.db.ApplicationContextHelper"/> 
 	<!-- 拦截器 -->
 	<mvc:interceptors>
 		<mvc:interceptor>
